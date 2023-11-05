@@ -239,5 +239,5 @@ Datos de entrada:
 Datos de salida:
 No hubo alumnos
 
-ej
+
 */
