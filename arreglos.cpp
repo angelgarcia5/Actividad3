@@ -14,9 +14,9 @@
 #include <iostream>
 using namespace std;
 //*************************************************
-//* Nombre:
-//* Matricula:
-//* Carrera:
+//* Nombre:Angelberto Garcia Pachuca
+//* Matricula:A00837832
+//* Carrera: ITC
 //*************************************************
 
 // Función que lee del teclado todos los valores que
@@ -24,7 +24,9 @@ using namespace std;
 // concepto muy importante - paso de parámetros por referencia - tu y Yo somos uno mismo
 // el argumento correspondiente es el que se modifica directamente
 void leerArreglo(int arrA[], int size){
-   // Añade las instrucciones y comentarios
+     for (int indice = 0; indice < size; indice++){
+        cin >> arrA[indice];
+     }
 }
 
 
@@ -33,29 +35,55 @@ void leerArreglo(int arrA[], int size){
 // además calcula y despliega la suma y promedio de todos los elementos del arreglo
 // ver casos de prueba opcion 1
 void sumaYpromedioArreglo(int arrA[], int size){
-    // Añade las instrucciones y comentarios
+    int suma = 0;
+    for (int indice = 0; indice < size; indice++) {
+        suma += arrA[indice];
 
 }
+   double promedio = static_cast<double>(suma) / size;
 
+    for (int indice = 0; indice < size; indice++) {
+        cout << arrA[indice] << endl;
+    }
 
-// Función que despliega los valores pares del arreglo
-//    - cada elemento en un renglón diferente  y
-//      calcula y despliega  la suma y promedio de los valores pares del arreglo
-//      Si el arreglo no tiene valores pares la función muestra
-//          "No hubo valores pares en el arreglo\n"
-// ver casos de prueba opcion 2
+    cout << "Total = " << suma << endl;
+    cout << "Promedio = " << promedio << endl;
+}
+
 void sumaValoresPares(int arrA[], int size){
-    // Añade las instrucciones y comentarios
-    
+    int sumaPares = 0;
+    int cantidadPares = 0;
+    for (int indice = 0; indice < size; indice++) {
+        if (arrA[indice] % 2 == 0) {
+            cout << arrA[indice] << endl;
+            sumaPares += arrA[indice];
+            cantidadPares++;
+        }
 }
 
-// Función reporteAlumnos - despliega en pantalla el nombre de los alumnos que tuvieron
-// una calificación igual o superior a la recibida en el parámetro de entrada calificacion.
-// Posteriormente muestra el Total de alumnos que cumplieron usando  "Total = "
-// Si ningún alumno cumple se muestra - "No hubo alumnos"
-// ver casos de prueba opcion 3
+    if (cantidadPares == 0) {
+        cout << "No hubo valores pares en el arreglo" << endl;
+    } else {
+        double promedioPares = static_cast<double>(sumaPares) / cantidadPares;
+        cout << "Total = " << sumaPares << endl;
+        cout << "Promedio = " << promedioPares << endl;
+    }
+}
+
 void reporteAlumnos(string arrNombresAlumnos[], int arrCalificacionesAlumnos[], int size, int calificacion){
-    // Añade las instrucciones y comentarios
+    int totalAlumnosCumplen = 0;
+    for (int indice = 0; indice < size; indice++) {
+        if (arrCalificacionesAlumnos[indice] >= calificacion) {
+            totalAlumnosCumplen++;
+            cout << indice + 1 << " " << arrNombresAlumnos[indice] << " " << arrCalificacionesAlumnos[indice] << endl;
+        }
+    }
+
+    if (totalAlumnosCumplen == 0) {
+        cout << "No hubo alumnos" << endl;
+    } else {
+        cout << "Total = " << totalAlumnosCumplen << endl;
+    }
 }
 
 
@@ -66,20 +94,24 @@ int main() {
     int arrCalificaciones[] = {110,110,100,100,100,110,120,100,110,110,100,105};
     int size = 5;
     int opcion, calificacion;
-    
+
     // leer la opcion a ejecutar
     cin >> opcion;
-    
-    // solo Si es opcion 1 o 2 llamar a la función que lee 5 valores enteros del teclado
-   
-    // si la opcion es 1 llamar a la función sumaYpromedioArreglo(arrB, size)
 
-    // si no Si la opcion es 2 llamar a la función sumaValoresPares(arrB, size)
-    
+    if (opcion == 1 || opcion == 2) {
+        leerArreglo(arrB, size);
+    }
 
-    // si no Si la opcion es 3 leer calificación y llamar a la función      reporteAlumnos(arrNombres, arrCalificaciones, 12, calificacion)
-    
-    // si no es alguna de las opciones desplegar "opcion incorrecta"
+    if (opcion == 1) {
+        sumaYpromedioArreglo(arrB, size);
+    } else if (opcion == 2) {
+        sumaValoresPares(arrB, size);
+    } else if (opcion == 3) {
+        cin >> calificacion;
+        reporteAlumnos(arrNombres, arrCalificaciones, 12, calificacion);
+    } else {
+        cout << "Opción incorrecta" << endl;
+    }
 
     return 0;
 }
